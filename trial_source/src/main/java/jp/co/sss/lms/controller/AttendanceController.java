@@ -1,21 +1,23 @@
 package jp.co.sss.lms.controller;
 
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import jp.co.sss.lms.dto.AttendanceManagementDto;
 import jp.co.sss.lms.dto.LoginUserDto;
 import jp.co.sss.lms.form.AttendanceForm;
+import jp.co.sss.lms.mapper.TStudentAttendanceMapper;
 import jp.co.sss.lms.service.StudentAttendanceService;
 import jp.co.sss.lms.util.Constants;
-
 /**
  * 勤怠管理コントローラ
  * 
@@ -29,6 +31,8 @@ public class AttendanceController {
 	private StudentAttendanceService studentAttendanceService;
 	@Autowired
 	private LoginUserDto loginUserDto;
+	@Autowired
+	private TStudentAttendanceMapper tStudentAttendanceMapper;
 
 	/**
 	 * 勤怠管理画面 初期表示
@@ -40,16 +44,29 @@ public class AttendanceController {
 	 * @throws ParseException
 	 */
 	@RequestMapping(path = "/detail", method = RequestMethod.GET)
-	public String index(Model model) {
+	public String index(Model model) throws ParseException {
 
 		// 勤怠一覧の取得
 		List<AttendanceManagementDto> attendanceManagementDtoList = studentAttendanceService
 				.getAttendanceManagement(loginUserDto.getCourseId(), loginUserDto.getLmsUserId());
 		model.addAttribute("attendanceManagementDtoList", attendanceManagementDtoList);
 
+		//未入力に件数を取得および判定8/15追加
+		boolean notEnterCount = studentAttendanceService.NotEnterCount(loginUserDto.getLmsUserId());
+		model.addAttribute("notEnterCount",notEnterCount);
 		return "attendance/detail";
 	}
+	
+	@GetMapping("/attendance")
+	public String attendance(Model model) {
+	    Integer lmsUserId = 123; // 実際はセッションや認証情報から取得
+	    Date today = new Date();
 
+	    Integer count = tStudentAttendanceMapper.notEnterCount(lmsUserId, today, (short)0);
+	boolean hasPastUnentered = tStudentAttendanceMapper.notEnterCount(lmsUserId, today, (short)0) > 0;
+	model.addAttribute("hasPastUnentered", hasPastUnentered);
+	return "attendance/detail";}
+	//ここまで8/15追加分
 	/**
 	 * 勤怠管理画面 『出勤』ボタン押下
 	 * 

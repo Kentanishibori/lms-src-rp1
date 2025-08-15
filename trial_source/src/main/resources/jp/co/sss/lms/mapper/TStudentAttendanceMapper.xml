@@ -17,6 +17,18 @@
 		WHERE lms_user_id = #{lmsUserId} 
 			AND training_date = #{trainingDate} 
 			AND delete_flg = #{deleteFlg}
+			<!-- 8/15追加 -->
+			AND status !=1
+			AND
+			(training_start_time=''
+			OR
+			training_end_time=''
+			OR training_start_time IS
+			NULL
+			OR
+			training_end_time IS
+			NULL)
+			<!-- ここまで8/15追加 -->
 	</select>
 
 	<select id="getAttendanceManagement" resultType="jp.co.sss.lms.dto.AttendanceManagementDto">

@@ -28,6 +28,14 @@ public interface TStudentAttendanceMapper {
 			@Param("deleteFlg") Short deleteFlg);
 
 	/**
+	 * 勤怠情報未入力情報の取得8/15追記
+	 */
+	Integer notEnterCount(@Param("lmsUserId")Integer lmsUserId,
+			@Param("trainingDate")Date trainingDate,@Param("deleteFlg")short deleteFlg);
+	//ここまで8/15追加分
+	
+	
+	/**
 	 * 勤怠情報（受講生入力）取得（LMSユーザーID＆日付）
 	 * 
 	 * @param lmsUserId
