@@ -57,9 +57,12 @@
 					</tr>
 				</thead>
 
-				<tbody class="db">
+<!--				<tbody class="db">-->
+<!--					下の1行のみ8/18追記、スクロールバーを出してる-->
+					<tbody style="display: block; overflow-y: scroll; height: 360px">
 					<th:block th:each="attendanceManagementDto : ${attendanceManagementDtoList}"
 						th:object="${attendanceManagementDto}">
+					
 						<tr>
 							<td class="w160">[[*{#dates.format(trainingDate, 'yyyy年M月d日(E)')}]]</td>
 							<td class="w260">[[*{sectionName}]]</td>
@@ -75,39 +78,7 @@
 		</div>
 	</div>
 
-	<!--8/15追加-->
-<!--	<th:block th:if="${hasPastUnentered}">-->
-<!--		<div class="modal fade" id="pastUnenteredModal" tabindex="-1" role="dialog">-->
-<!--			<div class="modal-dialog" role="document">-->
-<!--				<div class="modal-content">-->
-<!--					<div class="modal-header">-->
-<!--						<h5 class="modal-title">確認</h5>-->
-<!--						<button type="button" class="close" data-dismiss="modal">&times;</button>-->
-<!--					</div>-->
-<!--					<div class="modal-body">-->
-<!--						過去日の勤怠に未入力があります。-->
-<!--					</div>-->
-<!--					<div class="modal-footer">-->
-<!--						<button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>-->
-<!--					</div>-->
-<!--				</div>-->
-<!--			</div>-->
-<!--		</div>-->
-<!--		<script>-->
-<!--			$(document).ready(function () {-->
-<!--				$('#pastUnenteredModal').modal('show');-->
-<!--			});-->
-<!--		</script>-->
-<!--	</th:block>-->
-<script>
-        window.onload = function () {
-          if (notEnterFlg) {
-            alert("過去日の勤怠に未入力があります。");
-          }
-        };
-        </script>
-<!--ここまで8/15追加分-->
-
+	
 	<script type="text/javascript" th:inline="javascript">
 		$(function () {
 			$("#now").text('現在の時刻は　' + getClock() + '　です。');
@@ -122,6 +93,26 @@
 			return hours + ':' + minutes;
 		}
 	</script>
+<!--	8/16追記-->
+<!--	<script>-->
+<!--        window.onload = function () {-->
+<!--          if (notEnterFlg) {-->
+<!--            alert("過去日の勤怠に未入力があります。");-->
+<!--          }-->
+<!--        };-->
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var notEnterFlg = /*[[${notEnterFlg}]]*/ false;
+
+    window.onload = function () {
+        if (notEnterFlg) {
+            alert("過去日の勤怠に未入力があります。");
+        }
+    };
+    /*]]>*/
+</script>
+   
+     </script>
 
 </body>
 

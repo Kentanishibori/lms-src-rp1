@@ -17,18 +17,18 @@
 		WHERE lms_user_id = #{lmsUserId} 
 			AND training_date = #{trainingDate} 
 			AND delete_flg = #{deleteFlg}
-			<!-- 8/15追加 -->
-			AND status !=1
-			AND
-			(training_start_time=''
-			OR
-			training_end_time=''
-			OR training_start_time IS
-			NULL
-			OR
-			training_end_time IS
-			NULL)
-			<!-- ここまで8/15追加 -->
+<!--			 8/15追加 -->
+<!--			AND status !=1-->
+<!--			AND-->
+<!--			(training_start_time=''-->
+<!--			OR-->
+<!--			training_end_time=''-->
+<!--			OR training_start_time IS-->
+<!--			NULL-->
+<!--			OR-->
+<!--			training_end_time IS-->
+<!--			NULL)-->
+<!--			 ここまで8/15追加 -->
 	</select>
 
 	<select id="getAttendanceManagement" resultType="jp.co.sss.lms.dto.AttendanceManagementDto">
@@ -51,7 +51,26 @@
 			AND t1.delete_flg = #{deleteFlg}
 		ORDER BY t2.date ASC
 	</select>
-
+<!--8/16追記-->
+	<select id="notEnterCount"
+	resultType="Integer">
+	SELECT COUNT(*)
+	FROM t_student_attendance
+	WHERE lms_user_id=#{lmsUserId}
+	AND training_date &lt;#{trainingDate}
+	AND delete_flg=#{deleteFlg}
+	AND status !=1
+	AND
+	(
+	training_start_time = ''
+	OR
+	training_end_time IS
+	NULL
+	OR
+	training_end_time IS
+	NULL)
+	</select>
+<!--8/16追記-->
 	<insert id="insert" parameterType="jp.co.sss.lms.entity.TStudentAttendance" useGeneratedKeys="true" keyProperty="studentAttendanceId">
 		INSERT INTO t_student_attendance 
 		(

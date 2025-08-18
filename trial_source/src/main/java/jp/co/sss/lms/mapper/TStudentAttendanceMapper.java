@@ -26,13 +26,23 @@ public interface TStudentAttendanceMapper {
 	 */
 	List<TStudentAttendance> findByLmsUserId(@Param("lmsUserId") Integer lmsUserId,
 			@Param("deleteFlg") Short deleteFlg);
-
-	/**
-	 * 勤怠情報未入力情報の取得8/15追記
-	 */
-	Integer notEnterCount(@Param("lmsUserId")Integer lmsUserId,
-			@Param("trainingDate")Date trainingDate,@Param("deleteFlg")short deleteFlg);
-	//ここまで8/15追加分
+	//8/16追記
+//	/**
+//	 * 勤怠管理画面用DTOリスト取得
+//	 * 
+//	 * @param courseId
+//	 * @param lmsUserId
+//	 * @param deleteFlg
+//	 * @return 勤怠管理画面用DTOリスト
+//	 */
+//	List<AttendanceManagementDto> getAttendanceManagement(@Param("courseId") Integer courseId,
+//			@Param("lmsUserId") Integer lmsUserId, @Param("deleteFlg") short deleteFlg);
+//	/**
+//	 * 勤怠情報未入力情報の取得8/15追記
+//	 */
+//	Integer notEnterCount(@Param("lmsUserId")Integer lmsUserId,
+//			@Param("trainingDate")Date trainingDate,@Param("deleteFlg")short deleteFlg);
+//	//ここまで8/15追加分
 	
 	
 	/**
@@ -56,7 +66,14 @@ public interface TStudentAttendanceMapper {
 	 */
 	List<AttendanceManagementDto> getAttendanceManagement(@Param("courseId") Integer courseId,
 			@Param("lmsUserId") Integer lmsUserId, @Param("deleteFlg") Short deleteFlg);
-
+	
+	/**
+	 * 勤怠情報未入力情報の取得8/15追記
+	 */
+	Integer notEnterCount(@Param("lmsUserId")Integer lmsUserId,
+			@Param("trainingDate")Date trainingDate,@Param("deleteFlg")short deleteFlg);
+	//ここまで8/15追加分
+	
 	/**
 	 * 勤怠情報（受講生入力）登録
 	 * 

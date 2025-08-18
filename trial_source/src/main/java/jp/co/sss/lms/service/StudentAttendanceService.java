@@ -47,7 +47,7 @@ public class StudentAttendanceService {
 
 	
 	/**
-	 * 過去日の未入力数の取得8/15追記
+	 * 過去日の未入力数の取得8/15追記8/16追記
 	 * @throws ParseException
 	 */
 	public boolean NotEnterCount(Integer lmsUserId) throws ParseException{
@@ -66,7 +66,7 @@ public class StudentAttendanceService {
 		}
 		return check;
 	}
-	//ここまで8/15追加分
+	//ここまで8/15追加分8/16追記
 	/**
 	 * 勤怠一覧情報取得
 	 * 
