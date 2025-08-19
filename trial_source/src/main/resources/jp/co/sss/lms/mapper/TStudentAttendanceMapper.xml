@@ -64,8 +64,9 @@
 	(
 	training_start_time = ''
 	OR
-	training_end_time IS
-	NULL
+	training_end_time = ''
+<!--	IS-->
+<!--	NULL-->
 	OR
 	training_end_time IS
 	NULL)

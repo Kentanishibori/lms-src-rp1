@@ -56,16 +56,11 @@ public class AttendanceController {
 
 		Integer count = tStudentAttendanceMapper.notEnterCount(loginUserDto.getLmsUserId(), new Date(), (short)0);
 
-		// 未入力があれば true、なければ false
+		
 		boolean notEnterFlg = (count != null && count > 0);
 
-		// モデルにセット
+		
 		model.addAttribute("notEnterFlg", notEnterFlg);
-//		boolean notEnterFlg = studentAttendanceService.NotEnterCount(loginUserDto.getLmsUserId());
-//	    model.addAttribute("notEnterFlg", notEnterFlg);
-		//未入力に件数を取得および判定8/15追加,8/16追記
-//		boolean notEnterFlg = studentAttendanceService.NotEnterCount(loginUserDto.getLmsUserId());
-//		model.addAttribute("notEnterCount",notEnterFlg);
 		return "attendance/detail";
 	}
 	
