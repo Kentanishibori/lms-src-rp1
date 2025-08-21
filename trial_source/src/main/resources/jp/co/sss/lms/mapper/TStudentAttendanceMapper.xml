@@ -51,7 +51,7 @@
 			AND t1.delete_flg = #{deleteFlg}
 		ORDER BY t2.date ASC
 	</select>
-<!--8/16追記-->
+<!--8/16追記ここから-->
 	<select id="notEnterCount"
 	resultType="Integer">
 	SELECT COUNT(*)
@@ -65,13 +65,14 @@
 	training_start_time = ''
 	OR
 	training_end_time = ''
-<!--	IS-->
-<!--	NULL-->
+	OR
+	training_start_time IS
+	NULL
 	OR
 	training_end_time IS
 	NULL)
 	</select>
-<!--8/16追記-->
+<!--8/16追記ここまで-->
 	<insert id="insert" parameterType="jp.co.sss.lms.entity.TStudentAttendance" useGeneratedKeys="true" keyProperty="studentAttendanceId">
 		INSERT INTO t_student_attendance 
 		(

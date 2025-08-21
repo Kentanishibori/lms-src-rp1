@@ -56,7 +56,7 @@ public class AttendanceController {
 
 		Integer count = tStudentAttendanceMapper.notEnterCount(loginUserDto.getLmsUserId(), new Date(), (short)0);
 
-		
+		//task25　
 		boolean notEnterFlg = (count != null && count > 0);
 
 		

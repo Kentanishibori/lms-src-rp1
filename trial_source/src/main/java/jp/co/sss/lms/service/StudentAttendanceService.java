@@ -51,11 +51,11 @@ public class StudentAttendanceService {
 	 * @throws ParseException
 	 */
 	public boolean NotEnterCount(Integer lmsUserId) throws ParseException{
-		//本日の日付
+		//本日の日付を取得
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		Date trainingDate = df.parse(df.format(new Date()));
 		System.out.println(trainingDate);
-		//未入力日のカウント
+		//未入力日のカウント日付の情報もってきて未入力数えてる？
 		Integer notEnterCount=tStudentAttendanceMapper
 				.notEnterCount(lmsUserId,trainingDate,Constants.DB_FLG_FALSE);
 		//判定

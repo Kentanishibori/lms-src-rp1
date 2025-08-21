@@ -57,7 +57,9 @@
 								<td class="w300">[[${dailyAttendanceForm.sectionName}]]></td>
 <!--								定時ボタン表示classw60を上で指定している8/20-->
 								<td class="w60"><input type="button" class="btn btn-success" value="定時" />
-<!--								ボタン押したら定時の時間が入力されるのはプルダウンmockのattendanceListで0～23時、0～59分みたいなんを出勤と退勤にそれぞれ作ってその中の値持ってきますよの方がいいのか？-->
+								
+								
+
 								<td class="w70">
 									<input type="text" th:name="|attendanceList[${stat.index}].trainingStartTime|"
 									th:value="${dailyAttendanceForm.trainingStartTime}" class="form-control" />
