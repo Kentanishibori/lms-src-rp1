@@ -17,6 +17,7 @@ import jp.co.sss.lms.form.AttendanceForm;
 import jp.co.sss.lms.mapper.TStudentAttendanceMapper;
 import jp.co.sss.lms.service.StudentAttendanceService;
 import jp.co.sss.lms.util.Constants;
+
 /**
  * 勤怠管理コントローラ
  * 
@@ -33,8 +34,6 @@ public class AttendanceController {
 	@Autowired
 	private TStudentAttendanceMapper tStudentAttendanceMapper;
 
-	
-	
 	/**
 	 * 勤怠管理画面 初期表示
 	 * 
@@ -47,24 +46,19 @@ public class AttendanceController {
 	@RequestMapping(path = "/detail", method = RequestMethod.GET)
 	public String index(Model model) throws ParseException {
 
-		
-		
 		// 勤怠一覧の取得
 		List<AttendanceManagementDto> attendanceManagementDtoList = studentAttendanceService
 				.getAttendanceManagement(loginUserDto.getCourseId(), loginUserDto.getLmsUserId());
 		model.addAttribute("attendanceManagementDtoList", attendanceManagementDtoList);
 
-		Integer count = tStudentAttendanceMapper.notEnterCount(loginUserDto.getLmsUserId(), new Date(), (short)0);
+		Integer count = tStudentAttendanceMapper.notEnterCount(loginUserDto.getLmsUserId(), new Date(), (short) 0);
 
-		//task25　
+		//		未入力あったら(countが1以上)true
 		boolean notEnterFlg = (count != null && count > 0);
 
-		
 		model.addAttribute("notEnterFlg", notEnterFlg);
 		return "attendance/detail";
 	}
-	
-	
 
 	/**
 	 * 勤怠管理画面 『出勤』ボタン押下

@@ -57,12 +57,12 @@
 					</tr>
 				</thead>
 
-<!--				<tbody class="db">-->
-<!--					下の1行のみ8/18追記、スクロールバーを出してる-->
-					<tbody style="display: block; overflow-y: scroll; height: 360px">
+				<!--				<tbody class="db">-->
+				<!--					下の1行のみ8/18追記、スクロールバーを出してる-->
+				<tbody style="display: block; overflow-y: scroll; height: 360px">
 					<th:block th:each="attendanceManagementDto : ${attendanceManagementDtoList}"
 						th:object="${attendanceManagementDto}">
-					
+
 						<tr>
 							<td class="w160">[[*{#dates.format(trainingDate, 'yyyy年M月d日(E)')}]]</td>
 							<td class="w260">[[*{sectionName}]]</td>
@@ -78,7 +78,7 @@
 		</div>
 	</div>
 
-	
+
 	<script type="text/javascript" th:inline="javascript">
 		$(function () {
 			$("#now").text('現在の時刻は　' + getClock() + '　です。');
@@ -93,21 +93,21 @@
 			return hours + ':' + minutes;
 		}
 	</script>
-<!--	8/16追記-->
+	<!--	8/16追記-->
 
-<script th:inline="javascript">
-    /*<![CDATA[*/
-    var notEnterFlg = /*[[${notEnterFlg}]]*/ false;
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+		var notEnterFlg = /*[[${notEnterFlg}]]*/ false;
 
-    window.onload = function () {
-        if (notEnterFlg) {
-            alert("過去日の勤怠に未入力があります。");
-        }
-    };
-    /*]]>*/
-</script>
-   
-     </script>
+		window.onload = function () {
+			if (notEnterFlg) {
+				alert("過去日の勤怠に未入力があります。");
+			}
+		};
+		
+	</script>
+
+	</script>
 
 </body>
 
