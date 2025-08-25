@@ -50,7 +50,7 @@ public interface TStudentAttendanceMapper {
 			@Param("lmsUserId") Integer lmsUserId, @Param("deleteFlg") Short deleteFlg);
 
 	/**
-	 * 勤怠情報未入力情報の取得してカウントしてる8/22追記
+	 * 勤怠情報未入力情報の取得してカウント
 	 * @param lmsUserId
 	 * @param trainingDate
 	 * @param deleteFlg

@@ -45,7 +45,8 @@
 		AND t1.delete_flg = #{deleteFlg}
 		ORDER BY t2.date ASC
 	</select>
-	<!--8/16追記ここから -->
+
+<!--	DBから探す条件のSQL文-->
 	<select id="notEnterCount" resultType="Integer">
 		SELECT COUNT(*)
 		FROM t_student_attendance
@@ -55,7 +56,6 @@
 		AND status !=1
 		AND
 		(
-		<!-- 未入力チェック空かNULLの時カウントする -->
 		training_start_time = ''
 		OR
 		training_end_time = ''
@@ -66,7 +66,7 @@
 		training_end_time IS
 		NULL)
 	</select>
-	<!--8/16追記ここまで -->
+	
 	<insert id="insert"
 		parameterType="jp.co.sss.lms.entity.TStudentAttendance"
 		useGeneratedKeys="true" keyProperty="studentAttendanceId">

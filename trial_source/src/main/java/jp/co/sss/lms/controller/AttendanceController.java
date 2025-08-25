@@ -53,7 +53,7 @@ public class AttendanceController {
 
 		Integer count = tStudentAttendanceMapper.notEnterCount(loginUserDto.getLmsUserId(), new Date(), (short) 0);
 
-		//		未入力あったら(countが1以上)true
+		//		未入力がある場合(countが1以上)true
 		boolean notEnterFlg = (count != null && count > 0);
 
 		model.addAttribute("notEnterFlg", notEnterFlg);

@@ -57,8 +57,8 @@
 					</tr>
 				</thead>
 
-				<!--				<tbody class="db">-->
-				<!--					下の1行のみ8/18追記、スクロールバーを出してる-->
+			
+				
 				<tbody style="display: block; overflow-y: scroll; height: 360px">
 					<th:block th:each="attendanceManagementDto : ${attendanceManagementDtoList}"
 						th:object="${attendanceManagementDto}">
@@ -93,7 +93,7 @@
 			return hours + ':' + minutes;
 		}
 	</script>
-	<!--	8/16追記-->
+
 
 	<script th:inline="javascript">
 		/*<![CDATA[*/

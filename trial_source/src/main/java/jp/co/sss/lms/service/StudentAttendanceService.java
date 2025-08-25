@@ -46,7 +46,7 @@ public class StudentAttendanceService {
 	private TStudentAttendanceMapper tStudentAttendanceMapper;
 
 	/**
-	 * 過去日の未入力数の取得8/15追記8/16追記
+	 * 過去日の未入力数の取得
 	 * @param lmsUserId
 	 * @return
 	 * @throws ParseException
@@ -55,12 +55,10 @@ public class StudentAttendanceService {
 		//本日の日付を取得
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		Date trainingDate = df.parse(df.format(new Date()));
-		System.out.println(trainingDate);
-		//未入力日のカウント mapperからAPI呼び出している
+		//未入力日のカウント 
 		Integer notEnterCount = tStudentAttendanceMapper
 				.notEnterCount(lmsUserId, trainingDate, Constants.DB_FLG_FALSE);
-		//判定
-		System.out.println(notEnterCount);
+		//未入力判定
 		boolean check = false;
 		if (notEnterCount >= 1) {
 			check = true;
@@ -68,7 +66,7 @@ public class StudentAttendanceService {
 		return check;
 	}
 
-	//ここまで8/15追加分8/16追記
+
 	/**
 	 * 勤怠一覧情報取得
 	 * 
